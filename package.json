@@ -1,0 +1,28 @@
+{
+  "name": "training-management-system",
+  "version": "1.0.0",
+  "description": "Full-stack portfolio project for training operations management",
+  "private": true,
+  "workspaces": [
+    "backend",
+    "frontend"
+  ],
+  "scripts": {
+    "install:all": "npm install",
+    "start:backend": "cd backend && npm run start:dev",
+    "start:frontend": "cd frontend && npm run dev",
+    "build:backend": "cd backend && npm run build",
+    "build:frontend": "cd frontend && npm run build",
+    "docker:up": "docker compose up --build",
+    "docker:down": "docker compose down"
+  },
+  "keywords": [
+    "training-management",
+    "nestjs",
+    "react",
+    "postgresql",
+    "typescript"
+  ],
+  "author": "Eman Barakat",
+  "license": "UNLICENSED"
+}

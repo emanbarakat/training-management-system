@@ -1,0 +1,46 @@
+version: '3.9'
+
+services:
+  db:
+    image: postgres:15-alpine
+    container_name: tms-db
+    restart: unless-stopped
+    environment:
+      POSTGRES_USER: ${DATABASE_USER:-postgres}
+      POSTGRES_PASSWORD: ${DATABASE_PASSWORD:-change-me}
+      POSTGRES_DB: ${DATABASE_NAME:-training_db}
+    ports:
+      - '5432:5432'
+    volumes:
+      - db-data:/var/lib/postgresql/data
+    healthcheck:
+      test: ['CMD-SHELL', 'pg_isready -U ${DATABASE_USER:-postgres}']
+      interval: 10s
+      timeout: 5s
+      retries: 5
+
+  backend:
+    build:
+      context: ./backend
+      dockerfile: Dockerfile
+    container_name: tms-backend
+    restart: unless-stopped
+    depends_on:
+      db:
+        condition: service_healthy
+    ports:
+      - '3001:3001'
+    environment:
+      DATABASE_HOST: db
+      DATABASE_PORT: 5432
+      DATABASE_USER: ${DATABASE_USER:-postgres}
+      DATABASE_PASSWORD: ${DATABASE_PASSWORD:-change-me}
+      DATABASE_NAME: ${DATABASE_NAME:-training_db}
+      JWT_SECRET: ${JWT_SECRET:-replace-this-for-local-use}
+      JWT_REFRESH_SECRET: ${JWT_REFRESH_SECRET:-replace-this-refresh-secret}
+      NODE_ENV: development
+      APP_PORT: 3001
+    command: ["npm", "run", "start:prod"]
+
+volumes:
+  db-data:
