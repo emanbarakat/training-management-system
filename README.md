@@ -97,7 +97,7 @@ The frontend uses `VITE_API_URL` when provided and otherwise targets the local A
 
 ## Portfolio Scope
 
-The repository demonstrates full-stack system design across:
+The repository demonstrates project work involving:
 
 - REST API design
 - relational data modeling
@@ -109,5 +109,3 @@ The repository demonstrates full-stack system design across:
 ## Author
 
 **Eman Barakat**
-
-Software Development | Training Operations | AI & Digital Transformation
