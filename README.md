@@ -95,6 +95,10 @@ The frontend uses `VITE_API_URL` when provided and otherwise targets the local A
 - Example configuration values are placeholders only.
 - This is an MVP/portfolio codebase and should receive a full security review before production deployment.
 
+## Validation Status
+
+The sanitized public copy was reviewed statically after cleanup. It was **not** rebuilt or runtime-tested as part of that cleanup, so the setup instructions should be treated as project guidance rather than a verified deployment claim.
+
 ## Portfolio Scope
 
 The repository demonstrates project work involving:
